@@ -1,0 +1,83 @@
+EnvironmentConfigurationMetadata:
+  Description: "A possible configuration options required for backend app"
+Platform:
+  PlatformArn: arn:aws:elasticbeanstalk:ap-south-1::platform/Docker running on 64bit Amazon Linux 2/3.4.5
+OptionSettings:
+  AWSEBAutoScalingScaleDownPolicy.aws:autoscaling:trigger:
+    LowerBreachScaleIncrement: "-1"
+  AWSEBAutoScalingScaleUpPolicy.aws:autoscaling:trigger:
+    UpperBreachScaleIncrement: "1"
+  AWSEBCloudwatchAlarmHigh.aws:autoscaling:trigger:
+    UpperThreshold: "80"
+  AWSEBCloudwatchAlarmLow.aws:autoscaling:trigger:
+    BreachDuration: "5"
+    EvaluationPeriods: "1"
+    LowerThreshold: "5"
+    MeasureName: CPUUtilization
+    Period: "5"
+    Statistic: Average
+    Unit: Percent
+  AWSEBEC2LaunchTemplate.aws:autoscaling:launchconfiguration:
+    EC2KeyName: learn-and-share-devops
+    IamInstanceProfile: arn:aws:iam::303522029614:instance-profile/dev-new-learn-and-share-role
+    MonitoringInterval: 1 minute
+    RootVolumeSize: "32"
+    RootVolumeType: gp2
+  aws:autoscaling:asg:
+    # Availability Zones: Any 2
+    Cooldown: "300"
+    EnableCapacityRebalancing: "false"
+    MaxSize: "10"
+    MinSize: "2"
+  aws:autoscaling:launchconfiguration:
+    DisableIMDSv1: "true"
+    InstanceType: t2.nano
+    SSHSourceRestriction: tcp,22,22,0.0.0.0/0
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateEnabled: "false"
+    RollingUpdateType: Time
+    Timeout: PT30M
+  aws:elasticbeanstalk:application:
+    Application Healthcheck URL: /api/health-check
+  aws:elasticbeanstalk:cloudwatch:logs:
+    DeleteOnTerminate: "false"
+    RetentionInDays: "7"
+    StreamLogs: "false"
+  aws:elasticbeanstalk:cloudwatch:logs:health:
+    DeleteOnTerminate: "false"
+    HealthStreamingEnabled: "false"
+    RetentionInDays: "14"
+  aws:elasticbeanstalk:command:
+    BatchSize: "100"
+    BatchSizeType: Percentage
+    DeploymentPolicy: AllAtOnce
+    IgnoreHealthCheck: "false"
+    Timeout: "300"
+  aws:elasticbeanstalk:control:
+    DefaultSSHPort: "22"
+    LaunchTimeout: "0"
+    LaunchType: Migration
+    RollbackLaunchOnFailure: "false"
+  aws:elasticbeanstalk:environment:process:default:
+    DeregistrationDelay: "20"
+    HealthCheckInterval: "10"
+    HealthCheckPath: /api/health-check
+    HealthCheckTimeout: "5"
+    HealthyThresholdCount: "5"
+    Port: "80"
+    Protocol: HTTP
+    StickinessEnabled: "false"
+    StickinessLBCookieDuration: "86400"
+    StickinessType: lb_cookie
+    UnhealthyThresholdCount: "3"
+  aws:elasticbeanstalk:healthreporting:system:
+    SystemType: enhanced
+  aws:elasticbeanstalk:monitoring:
+    Automatically Terminate Unhealthy Instances: "true"
+  aws:elasticbeanstalk:sns:topics:
+    Notification Endpoint: vikash09racer@gmail.com
+    Notification Protocol: email
+EnvironmentTier:
+  Type: Standard
+  Name: WebServer
+AWSConfigurationTemplateVersion: 1.1.0.0

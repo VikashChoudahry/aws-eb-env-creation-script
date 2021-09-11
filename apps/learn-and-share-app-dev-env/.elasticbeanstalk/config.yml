@@ -1,0 +1,22 @@
+branch-defaults:
+  default:
+    environment: app-dev-env
+    group_suffix: null
+environment-defaults:
+  test-env4:
+    branch: null
+    repository: null
+global:
+  application_name: learn-and-share-app-dev-env
+  branch: null
+  default_ec2_keyname: learn-and-share-devops
+  default_platform: Docker running on 64bit Amazon Linux 2
+  default_region: ap-south-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: null
+  workspace_type: Application
